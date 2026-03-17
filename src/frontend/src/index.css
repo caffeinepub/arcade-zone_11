@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+    /* Dark neon arcade palette - always dark */
+    --background: 0.09 0.025 258;
+    --foreground: 0.97 0 0;
+    --card: 0.13 0.028 258;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.15 0.028 255;
+    --popover-foreground: 0.97 0 0;
+    --primary: 0.65 0.28 25;
+    --primary-foreground: 0.09 0.025 258;
+    --secondary: 0.17 0.03 258;
+    --secondary-foreground: 0.97 0 0;
+    --muted: 0.17 0.028 258;
+    --muted-foreground: 0.68 0.03 258;
+    --accent: 0.65 0.28 25;
+    --accent-foreground: 0.09 0.025 258;
+    --destructive: 0.65 0.28 25;
+    --destructive-foreground: 0.97 0 0;
+    --border: 0.28 0.05 240;
+    --input: 0.22 0.04 255;
+    --ring: 0.65 0.28 25;
+    --chart-1: 0.65 0.28 25;
+    --chart-2: 0.85 0.28 145;
+    --chart-3: 0.58 0.29 296;
+    --chart-4: 0.65 0.28 330;
+    --chart-5: 0.87 0.17 82;
+    --sidebar: 0.11 0.026 258;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.65 0.28 25;
+    --sidebar-primary-foreground: 0.09 0.025 258;
+    --sidebar-accent: 0.17 0.03 258;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.28 0.05 240;
+    --sidebar-ring: 0.65 0.28 25;
+
+    /* Neon accent vars */
+    --neon-red: oklch(0.65 0.28 25);
+    --neon-cyan: oklch(0.65 0.28 25);
+    --neon-green: oklch(0.85 0.28 145);
+    --neon-purple: oklch(0.58 0.29 296);
+    --neon-pink: oklch(0.65 0.28 330);
+    --neon-yellow: oklch(0.87 0.17 82);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: radial-gradient(
+      ellipse at top,
+      oklch(0.12 0.035 258) 0%,
+      oklch(0.08 0.02 258) 100%
+    );
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Orbitron", sans-serif;
+  }
+}
+
+@layer utilities {
+  .neon-text-cyan {
+    color: var(--neon-red);
+    text-shadow: 0 0 10px oklch(0.65 0.28 25 / 0.8), 0 0 30px
+      oklch(0.65 0.28 25 / 0.4);
+  }
+  .neon-text-green {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px oklch(0.85 0.28 145 / 0.8), 0 0 30px
+      oklch(0.85 0.28 145 / 0.4);
+  }
+  .neon-text-purple {
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px oklch(0.58 0.29 296 / 0.8), 0 0 30px
+      oklch(0.58 0.29 296 / 0.4);
+  }
+  .neon-text-pink {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px oklch(0.65 0.28 330 / 0.8), 0 0 30px
+      oklch(0.65 0.28 330 / 0.4);
+  }
+  .neon-text-yellow {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px oklch(0.87 0.17 82 / 0.8), 0 0 30px
+      oklch(0.87 0.17 82 / 0.4);
+  }
+  .neon-border-cyan {
+    border-color: oklch(0.65 0.28 25 / 0.6);
+    box-shadow: 0 0 10px oklch(0.65 0.28 25 / 0.2), inset 0 0 10px
+      oklch(0.65 0.28 25 / 0.05);
+  }
+  .neon-border-green {
+    border-color: oklch(0.85 0.28 145 / 0.6);
+    box-shadow: 0 0 10px oklch(0.85 0.28 145 / 0.2), inset 0 0 10px
+      oklch(0.85 0.28 145 / 0.05);
+  }
+  .neon-border-purple {
+    border-color: oklch(0.58 0.29 296 / 0.6);
+    box-shadow: 0 0 10px oklch(0.58 0.29 296 / 0.2), inset 0 0 10px
+      oklch(0.58 0.29 296 / 0.05);
+  }
+  .neon-border-pink {
+    border-color: oklch(0.65 0.28 330 / 0.6);
+    box-shadow: 0 0 10px oklch(0.65 0.28 330 / 0.2), inset 0 0 10px
+      oklch(0.65 0.28 330 / 0.05);
+  }
+  .neon-border-yellow {
+    border-color: oklch(0.87 0.17 82 / 0.6);
+    box-shadow: 0 0 10px oklch(0.87 0.17 82 / 0.2), inset 0 0 10px
+      oklch(0.87 0.17 82 / 0.05);
+  }
+  .glow-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(0.65 0.28 25),
+      oklch(0.55 0.28 15)
+    );
+    box-shadow: 0 0 20px oklch(0.65 0.28 25 / 0.5), 0 4px 15px
+      oklch(0.65 0.28 25 / 0.3);
+    transition: all 0.2s ease;
+  }
+  .glow-btn:hover {
+    box-shadow: 0 0 30px oklch(0.65 0.28 25 / 0.8), 0 4px 25px
+      oklch(0.65 0.28 25 / 0.5);
+    transform: translateY(-1px);
+  }
+  .game-card {
+    background: oklch(0.13 0.028 258);
+    border: 1px solid oklch(0.65 0.28 25 / 0.3);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .game-card:hover {
+    border-color: oklch(0.65 0.28 25 / 0.7);
+    box-shadow: 0 0 25px oklch(0.65 0.28 25 / 0.2), 0 8px 30px
+      oklch(0 0 0 / 0.4);
+    transform: translateY(-4px);
+  }
+}
