@@ -53,6 +53,14 @@ export function Header() {
           >
             Movies
           </Link>
+          <Link
+            to="/chat"
+            className="text-sm font-medium transition-colors tracking-wide uppercase"
+            style={{ color: "oklch(0.72 0.22 145)" }}
+            data-ocid="nav.chat.link"
+          >
+            Chat
+          </Link>
         </nav>
         <div className="flex items-center gap-3">
           <button

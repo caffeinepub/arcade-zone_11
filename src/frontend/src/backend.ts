@@ -89,6 +89,11 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface ChatMessage {
+    username: string;
+    message: string;
+    timestamp: Time;
+}
 export type Time = bigint;
 export interface ScoreEntry {
     score: bigint;
@@ -103,8 +108,10 @@ export interface GameMetadata {
 export interface backendInterface {
     addGame(name: string, description: string, category: string): Promise<void>;
     getGameMetadata(): Promise<Array<GameMetadata>>;
+    getRecentMessages(limit: bigint): Promise<Array<ChatMessage>>;
     getTopScores(game: string, limit: bigint): Promise<Array<ScoreEntry>>;
     getTotalPlays(game: string): Promise<bigint>;
+    sendMessage(username: string, message: string): Promise<void>;
     submitScore(game: string, playerName: string, score: bigint): Promise<void>;
 }
 export class Backend implements backendInterface {
@@ -137,6 +144,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getRecentMessages(arg0: bigint): Promise<Array<ChatMessage>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getRecentMessages(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getRecentMessages(arg0);
+            return result;
+        }
+    }
     async getTopScores(arg0: string, arg1: bigint): Promise<Array<ScoreEntry>> {
         if (this.processError) {
             try {
@@ -162,6 +183,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getTotalPlays(arg0);
+            return result;
+        }
+    }
+    async sendMessage(arg0: string, arg1: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.sendMessage(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.sendMessage(arg0, arg1);
             return result;
         }
     }

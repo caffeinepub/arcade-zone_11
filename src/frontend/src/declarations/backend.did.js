@@ -14,6 +14,11 @@ export const GameMetadata = IDL.Record({
   'category' : IDL.Text,
 });
 export const Time = IDL.Int;
+export const ChatMessage = IDL.Record({
+  'username' : IDL.Text,
+  'message' : IDL.Text,
+  'timestamp' : Time,
+});
 export const ScoreEntry = IDL.Record({
   'score' : IDL.Int,
   'timestamp' : Time,
@@ -23,12 +28,14 @@ export const ScoreEntry = IDL.Record({
 export const idlService = IDL.Service({
   'addGame' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
   'getGameMetadata' : IDL.Func([], [IDL.Vec(GameMetadata)], ['query']),
+  'getRecentMessages' : IDL.Func([IDL.Nat], [IDL.Vec(ChatMessage)], ['query']),
   'getTopScores' : IDL.Func(
       [IDL.Text, IDL.Nat],
       [IDL.Vec(ScoreEntry)],
       ['query'],
     ),
   'getTotalPlays' : IDL.Func([IDL.Text], [IDL.Int], ['query']),
+  'sendMessage' : IDL.Func([IDL.Text, IDL.Text], [], []),
   'submitScore' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
 });
 
@@ -41,6 +48,11 @@ export const idlFactory = ({ IDL }) => {
     'category' : IDL.Text,
   });
   const Time = IDL.Int;
+  const ChatMessage = IDL.Record({
+    'username' : IDL.Text,
+    'message' : IDL.Text,
+    'timestamp' : Time,
+  });
   const ScoreEntry = IDL.Record({
     'score' : IDL.Int,
     'timestamp' : Time,
@@ -50,12 +62,18 @@ export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     'addGame' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
     'getGameMetadata' : IDL.Func([], [IDL.Vec(GameMetadata)], ['query']),
+    'getRecentMessages' : IDL.Func(
+        [IDL.Nat],
+        [IDL.Vec(ChatMessage)],
+        ['query'],
+      ),
     'getTopScores' : IDL.Func(
         [IDL.Text, IDL.Nat],
         [IDL.Vec(ScoreEntry)],
         ['query'],
       ),
     'getTotalPlays' : IDL.Func([IDL.Text], [IDL.Int], ['query']),
+    'sendMessage' : IDL.Func([IDL.Text, IDL.Text], [], []),
     'submitScore' : IDL.Func([IDL.Text, IDL.Text, IDL.Int], [], []),
   });
 };

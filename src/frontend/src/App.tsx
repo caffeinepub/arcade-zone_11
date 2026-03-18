@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { ChatPage } from "./pages/ChatPage";
 import { GamePage } from "./pages/GamePage";
 import { LobbyPage } from "./pages/LobbyPage";
 import { MoviesPage } from "./pages/MoviesPage";
@@ -53,11 +54,18 @@ const moviesRoute = createRoute({
   component: MoviesPage,
 });
 
+const chatRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/chat",
+  component: ChatPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   gameRoute,
   webRoute,
   moviesRoute,
+  chatRoute,
 ]);
 
 const router = createRouter({ routeTree });
